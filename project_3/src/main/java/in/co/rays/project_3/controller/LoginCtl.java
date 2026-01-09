@@ -162,7 +162,12 @@ public class LoginCtl extends BaseCtl {
 
 			} catch (ApplicationException e) {
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				// ServletUtility.handleException(e, request, response);
+
+					ServletUtility.setErrorMessage("Opps anble to reach to conection!", request);
+						ServletUtility.forward(getView(), request, response);
+
+				
 				return;
 			}
 
