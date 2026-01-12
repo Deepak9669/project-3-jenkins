@@ -20,13 +20,12 @@
 <style>
 .hm {
 	background-image: url('<%=ORSView.APP_CONTEXT%>/img/al.jpg');
-	
 	background-repeat: no-repeat;
-	background-attachment: fixed; 
+	background-attachment: fixed;
 	background-size: cover;
 	padding-top: 85px;
-	
-    /*  background-size: 100%; */
+
+	/*  background-size: 100%; */
 }
 
 .p1 {

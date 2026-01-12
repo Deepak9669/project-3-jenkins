@@ -35,7 +35,7 @@ public class ProductModelHibImp implements ProductModelInt {
 				tx.rollback();
 
 			}
-			throw new ApplicationException("Exception in college Add " + e.getMessage());
+			throw new ApplicationException("Exception in product Add " + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -56,7 +56,7 @@ public class ProductModelHibImp implements ProductModelInt {
 			if (tx != null) {
 				tx.rollback();
 			}
-			throw new ApplicationException("Exception in college Delete" + e.getMessage());
+			throw new ApplicationException("Exception in product Delete" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -82,7 +82,7 @@ public class ProductModelHibImp implements ProductModelInt {
 			if (tx != null) {
 				tx.rollback();
 			}
-			throw new ApplicationException("Exception in college update" + e.getMessage());
+			throw new ApplicationException("Exception in product update" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -110,7 +110,7 @@ public class ProductModelHibImp implements ProductModelInt {
 
 		} catch (HibernateException e) {
 
-			throw new ApplicationException("Exception : Exception in  College list");
+			throw new ApplicationException("Exception : Exception in  product list");
 		} finally {
 			session.close();
 		}
@@ -152,7 +152,7 @@ public class ProductModelHibImp implements ProductModelInt {
 			list = criteria.list();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			throw new ApplicationException("Exception in college search");
+			throw new ApplicationException("Exception in product search");
 		} finally {
 			session.close();
 		}

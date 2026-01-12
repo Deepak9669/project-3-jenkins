@@ -1,7 +1,7 @@
 package in.co.rays.project_3.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.Session;
+import org.hibernate.impl.SessionImpl;
 
 import in.co.rays.project_3.dto.UserDTO;
 import in.co.rays.project_3.util.HibDataSource;
@@ -23,89 +23,83 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 
+/**
+ * Jasper functionality Controller. Performs operation for Print pdf of
+ * MarksheetMeriteList
+ *
+ * @author Deepak Verma
+ */
 @WebServlet(name = "JasperCtl", urlPatterns = { "/ctl/JasperCtl" })
 public class JasperCtl extends BaseCtl {
 
-    private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 * <artifactId>jasperreports</artifactId> <version>6.13.0</version>
+	 */
+	
+	private static final long serialVersionUID = 1L;
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
 
-        ResourceBundle rb = ResourceBundle.getBundle("in.co.rays.project_3.bundle.system");
-        Connection conn = null;
+			ResourceBundle rb = ResourceBundle.getBundle("in.co.rays.project_3.bundle.system");
 
-        try {
+			InputStream jrxmlStream = getClass().getClassLoader().getResourceAsStream("reports/Deepak.jrxml");
 
-            /* Jasper file path */
-            String jasperFile = System.getenv("jasperctl");
+			JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
+//
+//			/* Compilation of jrxml file */
+//			JasperReport jasperReport =JasperCompileManager
+//					   .compileReport("D:\\Project-03\\Project-03\\project_3\\src\\main\\resources\\reports\\p3.jrxml");
 
-            if (jasperFile == null) {
-                jasperFile = getServletContext().getRealPath("/jasper/dabi.jrxml");
-            }
+			HttpSession session = request.getSession(true);
 
-            /* Compile jrxml */
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperFile);
+			UserDTO dto = (UserDTO) session.getAttribute("user");
 
-            /* Session user */
-            HttpSession session = request.getSession(false);
-            UserDTO user = (UserDTO) session.getAttribute("user");
+			dto.getFirstName();
+			dto.getLastName();
 
-            if (user == null) {
-                throw new ServletException("User not logged in");
-            }
+			Map<String, Object> map = new HashMap<String, Object>();
 
-            /* Parameters */
-            Map<String, Object> map = new HashMap<>();
-            map.put("ID", 1L);
+			map.put("ID", 1l);
+			java.sql.Connection conn = null;
 
-            String database = rb.getString("DATABASE");
+			String Database = rb.getString("DATABASE");
 
-            /* ===== JDBC MODE ===== */
-            if ("JDBC".equalsIgnoreCase(database)) {
-                conn = JDBCDataSource.getConnection();
+			if ("Hibernate".equalsIgnoreCase(Database)) {
+				conn = ((SessionImpl) HibDataSource.getSession()).connection();
+			}
 
-                JasperPrint jasperPrint =
-                        JasperFillManager.fillReport(jasperReport, map, conn);
+			if ("JDBC".equalsIgnoreCase(Database)) {
+				conn = JDBCDataSource.getConnection();
+			}
 
-                byte[] pdf = JasperExportManager.exportReportToPdf(jasperPrint);
-                response.setContentType("application/pdf");
-                response.getOutputStream().write(pdf);
-            }
+			/* Filling data into the report */
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, conn);
 
-            /* ===== HIBERNATE MODE ===== */
-            if ("Hibernate".equalsIgnoreCase(database)) {
+			/* Export Jasper report */
+			byte[] pdf = JasperExportManager.exportReportToPdf(jasperPrint);
 
-                Session hibSession = HibDataSource.getSession();
+			response.setContentType("application/pdf");
+			response.getOutputStream().write(pdf);
+			response.getOutputStream().flush();
 
-                hibSession.doWork(connection -> {
-                    try {
-                        JasperPrint jasperPrint =
-                                JasperFillManager.fillReport(jasperReport, map, connection);
+		} catch (Exception e) {
+			e.printStackTrace();
 
-                        byte[] pdf =
-                                JasperExportManager.exportReportToPdf(jasperPrint);
+		}
+	}
 
-                        response.setContentType("application/pdf");
-                        response.getOutputStream().write(pdf);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
-            }
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-            response.getOutputStream().flush();
+	}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new ServletException(e);
-        } finally {
-            JDBCDataSource.closeConnection(conn);
-        }
-    }
+	@Override
+	protected String getView() {
+		return null;
+	}
 
-    @Override
-    protected String getView() {
-        return null;
-    }
 }

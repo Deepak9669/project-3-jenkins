@@ -10,7 +10,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
  * @author Deepak Verma
  *
  */
-public class JDBCDataSource {
+public final class JDBCDataSource {
 	/**
      * JDBC Database connection pool ( DCP )
      */

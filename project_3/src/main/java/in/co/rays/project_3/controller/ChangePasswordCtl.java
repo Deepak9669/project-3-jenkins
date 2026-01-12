@@ -98,11 +98,11 @@ public class ChangePasswordCtl extends BaseCtl {
 
 		UserModelInt model = ModelFactory.getInstance().getUserModel();
 
-		UserDTO UserBean = (UserDTO) session.getAttribute("user");
+		UserDTO UserDto = (UserDTO) session.getAttribute("user");
 		String newPassword = request.getParameter("newpassword");
 		String oldPassword = request.getParameter("oldpassword");
 
-		long id = UserBean.getId();
+		long id = UserDto.getId();
 
 //		System.out.println("do post id..." + id + "...." + UserBean.getPassword() + ";;;;;;;;;" + UserBean.getId()
 //				+ "....." + newPassword + "...." + oldPassword);
@@ -112,7 +112,7 @@ public class ChangePasswordCtl extends BaseCtl {
 				boolean flag = model.changePassword(id, newPassword, oldPassword);
 				if (flag == true) {
 
-					model.findByLogin(UserBean.getLogin());
+					model.findByLogin(UserDto.getLogin());
 					ServletUtility.setSuccessMessage("Password has been change successfully", request);
 				}
 			} catch (ApplicationException e) {

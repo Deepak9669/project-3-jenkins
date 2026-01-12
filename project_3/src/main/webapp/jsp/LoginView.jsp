@@ -32,11 +32,6 @@
 	box-shadow: 9px 8px 7px #001a33;
 }
 
-.grad {
-	background-image: linear-gradient(to bottom right, white, grey);
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
 
 i.css {
 	border: 2px solid #8080803b;

@@ -10,7 +10,7 @@
 }
 
 body {
-	background-image: url('img/amit.jpg');
+	background-image: url('img/welcomepage.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 }
@@ -21,7 +21,7 @@ body {
 			<img src="img/custom.png" width="318" height="120" border="0">
 		</h1>
 		<h1 align="Center">
-			<a href="<%=ORSView.WELCOME_CTL%>" style="color: indigo;"> <font
+			<a href="<%=ORSView.WELCOME_CTL%>" style="color: blue;"> <font
 				size="8px">Online Result System</font></a>
 		</h1>
 	</div>

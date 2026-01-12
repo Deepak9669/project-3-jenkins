@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 2, 2026, 4:09:28 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <subclass name="in.co.rays.project_3.dto.BusDTO" extends="in.co.rays.project_3.dto.BaseDTO" discriminator-value="BusDTO" lazy="false">
+        <property name="busNumber" type="java.lang.String">
+            <column name="BUSNUMBER" />
+        </property>
+        <property name="destination" type="java.lang.String">
+            <column name="DESTINATION" />
+        </property>
+        <property name="source" type="java.lang.String">
+            <column name="SOURCE" />
+        </property>
+        <property name="busType" type="java.lang.String">
+            <column name="BUSTYPE" />
+        </property>
+        <property name="totalSeats" type="java.lang.String">
+            <column name="TOTALSEATS" />
+        </property>
+    </subclass>
+</hibernate-mapping>
