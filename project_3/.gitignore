@@ -1,13 +1,2 @@
 /.metadata/
 /target/
-# Ignore Bus Use case files
-project_3/src/main/java/in/co/rays/project_3/controller/BusCtl.java
-project_3/src/main/java/in/co/rays/project_3/controller/BusListCtl.java
-project_3/src/main/java/in/co/rays/project_3/dto/BusDTO.java
-project_3/src/main/java/in/co/rays/project_3/dto/BusDTO.hbm.xml
-project_3/src/main/java/in/co/rays/project_3/model/BusModelHibImpl.java
-project_3/src/main/java/in/co/rays/project_3/model/BusModelInt.java
-project_3/src/main/java/in/co/rays/project_3/model/BusModelJDBCImpl.java
-project_3/src/main/resources/in/co/rays/project_3/hbm/BusDTO.hbm.xml
-project_3/src/main/webapp/jsp/BusListView.jsp
-project_3/src/main/webapp/jsp/BusView.jsp
