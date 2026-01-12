@@ -32,7 +32,6 @@ public class UserModelHibImp implements UserModelInt {
 	public long add(UserDTO dto) throws ApplicationException, DuplicateRecordException {
 
 		System.out.println("in addddddddddddd");
-		// TODO Auto-generated method stub
 		/* log.debug("usermodel hib start"); */
 
 		UserDTO existDto = null;
@@ -94,7 +93,7 @@ public class UserModelHibImp implements UserModelInt {
 		UserDTO existDto = findByLogin(dto.getLogin());
 		// Check if updated LoginId already exist
 		if (existDto != null && existDto.getId() != dto.getId()) {
-			 throw new DuplicateRecordException("LoginId is already exist");
+			throw new DuplicateRecordException("LoginId is already exist");
 		}
 
 		try {
@@ -130,7 +129,6 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public UserDTO findByLogin(String login) throws ApplicationException {
-		// TODO Auto-generated method stub
 		Session session = null;
 		UserDTO dto = null;
 		try {
@@ -182,12 +180,10 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public List search(UserDTO dto) throws ApplicationException {
-		// TODO Auto-generated method stub
 		return search(dto, 0, 0);
 	}
 
 	public List search(UserDTO dto, int pageNo, int pageSize) throws ApplicationException {
-		// TODO Auto-generated method stub
 
 		System.out.println(
 				"hellllo" + pageNo + "....." + pageSize + "........" + dto.getId() + "......" + dto.getRoleId());
@@ -265,13 +261,11 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public List getRoles(UserDTO dto) throws ApplicationException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public boolean changePassword(long id, String newPassword, String oldPassword)
 			throws ApplicationException, RecordNotFoundException {
-		// TODO Auto-generated method stub
 		boolean flag = false;
 		UserDTO dtoExist = null;
 

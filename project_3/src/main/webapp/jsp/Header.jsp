@@ -65,39 +65,54 @@
 				<%
 					if (userLoggedIn) {
 				%>
-				 <% if (userDto.getRoleId() == RoleDTO.STUDENT) { %>
+				<%
+					if (userDto.getRoleId() == RoleDTO.STUDENT) {
+				%>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                            <span style="color:white;">Marksheet</span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item"
-                                href="<%=ORSView.MARKSHEET_MERIT_LIST_CTL%>">
-                                <i class="fa fa-file-alt"></i> Marksheet Merit List
-                            </a>
-                        </div>
-                    </li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+						<span style="color: white;">Marksheet</span>
+				</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item"
+							href="<%=ORSView.MARKSHEET_MERIT_LIST_CTL%>"> <i
+							class="fa fa-file-alt"></i> Marksheet Merit List
+						</a>
+					</div></li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                            <span style="color:white;">User</span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item"
-                                href="<%=ORSView.MY_PROFILE_CTL%>">
-                                <i class="fa fa-user-tie"></i> My Profile
-                            </a>
-                            <a class="dropdown-item"
-                                href="<%=ORSView.CHANGE_PASSWORD_CTL%>">
-                                <i class="fa fa-edit"></i> Change Password
-                            </a>
-                        </div>
-                    </li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+						<span style="color: white;">User</span>
+				</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="<%=ORSView.MY_PROFILE_CTL%>"> <i
+							class="fa fa-user-tie"></i> My Profile
+						</a> <a class="dropdown-item" href="<%=ORSView.CHANGE_PASSWORD_CTL%>">
+							<i class="fa fa-edit"></i> Change Password
+						</a>
+					</div></li>
 
 				<%
 					} else if (userDto.getRoleId() == RoleDTO.ADMIN) {
 				%>
+
+				<!-- ====================== BUS MENU ADDED ====================== -->
+				<li class="nav-item dropdown" style="padding-left: 5px;"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Bus</font>
+				</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+						<a class="dropdown-item" href="<%=ORSView.BUS_CTL%>"><i
+							class="fa fa-user-circle"></i>Add Bus</a> 
+							
+						<a class="dropdown-item"
+							href="<%=ORSView.BUS_LIST_CTL%>"><i
+							class="fa fa-user-friends"></i>Bus List</a>
+					</div></li>
+				<!-- ============================================================ -->
+
 
 				<li class="nav-item dropdown" style="padding-left: 5px;"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -105,14 +120,14 @@
 					aria-expanded="false"> <font style="color: white;">User</font>
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					
+
 						<a class="dropdown-item" href="<%=ORSView.USER_CTL%>"><i
 							class="fa fa-user-circle"></i>Add User</a> <a class="dropdown-item"
 							href="<%=ORSView.USER_LIST_CTL%>"><i
 							class="fa fa-user-friends"></i>User List</a>
 					</div></li>
 
-				<li class="nav-item dropdown" style="padding-left: 5px"><a
+				<li class="nav-item dropdown" style="pnbhadding-left: 5px"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> <font style="color: white;">Marksheet
@@ -185,6 +200,8 @@
 							href="<%=ORSView.FACULTY_LIST_CTL%>"><i class=" fa fa-users"></i>Faculty
 							List</a>
 					</div></li>
+
+
 
 				<li class="nav-item dropdown" style="padding-left: 5px"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"

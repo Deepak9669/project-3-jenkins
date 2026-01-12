@@ -275,7 +275,6 @@ public class CollegeModelJDBCImpl implements CollegeModelInt {
 	}
 
 	public CollegeDTO findByPK(long pk) throws ApplicationException {
-		// TODO Auto-generated method stub
 		Connection conn = null;
 		CollegeDTO dto = null;
 		try {

@@ -17,7 +17,6 @@ public class HibDataSource {
 	private static SessionFactory sessionFactory = null;
 
 	public static SessionFactory getSessionFactory() {
-
 		if (sessionFactory == null) {
             ResourceBundle rb = ResourceBundle.getBundle("in.co.rays.project_3.bundle.system");
 
@@ -38,6 +37,8 @@ public class HibDataSource {
 		return session;
 
 	}
+	
+	
 
 	public static void closeSession(Session session) {
 

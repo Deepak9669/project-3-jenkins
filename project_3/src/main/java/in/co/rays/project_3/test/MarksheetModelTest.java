@@ -19,12 +19,12 @@ public class MarksheetModelTest {
 
 	// public static MarksheetModelInt model=new MarksheetModelJDBCImpl();
 	public static void main(String[] args) throws Exception {
-		// addTest();
+		 addTest();
 		// deleteTest();
 		// updateTest();
 		// findByPkTest();
 		// findByEmailIdTest();
-		listTest();
+//		listTest();
 		// searchTest();
 	}
 
