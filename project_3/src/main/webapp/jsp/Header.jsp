@@ -96,7 +96,22 @@
 					} else if (userDto.getRoleId() == RoleDTO.ADMIN) {
 				%>
 
-			
+				<!-- ====================== BUS MENU ADDED ====================== -->
+				<li class="nav-item dropdown" style="padding-left: 5px;"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Bus</font>
+				</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+						<a class="dropdown-item" href="<%=ORSView.BUS_CTL%>"><i
+							class="fa fa-user-circle"></i>Add Bus</a> 
+							
+						<a class="dropdown-item"
+							href="<%=ORSView.BUS_LIST_CTL%>"><i
+							class="fa fa-user-friends"></i>Bus List</a>
+					</div></li>
+				<!-- ============================================================ -->
 
 
 				<li class="nav-item dropdown" style="padding-left: 5px;"><a
