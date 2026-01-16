@@ -242,7 +242,7 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public UserDTO authenticate(String login, String password) throws ApplicationException {
-		// TODO Auto-generated method stub
+		
 		System.out.println(login + "kkkkk" + password);
 		Session session = null;
 		UserDTO dto = null;

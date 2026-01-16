@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>User List</title>
+<title>User List</title>c
 <script src="<%=ORSView.APP_CONTEXT%>/js/jquery.min.js"></script>
 <script type="text/javascript"
 	src="<%=ORSView.APP_CONTEXT%>/js/CheckBox11.js"></script>
@@ -39,9 +39,12 @@
 }
 </style>
 </head>
-<%@include file="Header.jsp"%>
 <body class="hm">
 	<div>
+		<div class="header">
+		<%@include file="Header.jsp"%>
+		<%@include file="calendar.jsp"%>
+	</div>
 		<form class="pb-5" action="<%=ORSView.USER_LIST_CTL%>" method="post">
 			<jsp:useBean id="dto" class="in.co.rays.project_3.dto.UserDTO"
 				scope="request"></jsp:useBean>
