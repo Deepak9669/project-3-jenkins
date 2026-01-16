@@ -12,7 +12,7 @@
 
  <error-page>
 		<exception-type>org.hibernate.JDBCConnectionException</exception-type>
-		<location>ErrorCtl</location>
+		<location>/ErrorCtl</location>
 	</error-page>
 
 
