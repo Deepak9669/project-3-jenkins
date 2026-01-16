@@ -27,7 +27,9 @@ public class ErrorCtl extends BaseCtl{
      *
      */
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
-		
+
+				ServletUtility.setErrorMessage("Database down", request);
+
 		ServletUtility.forward(getView(), request, response);
 		
 	}
