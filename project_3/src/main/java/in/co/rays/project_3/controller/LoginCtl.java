@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.hibernate.exception.JDBCConnectionException;
 
 import in.co.rays.project_3.dto.BaseDTO;
 import in.co.rays.project_3.dto.RoleDTO;
@@ -160,7 +161,7 @@ public class LoginCtl extends BaseCtl {
 					ServletUtility.setErrorMessage("Invalid LoginId And Password!", request);
 				}
 
-			} catch (ApplicationException e | JDBCConnectionException e) {
+			} catch (ApplicationException | JDBCConnectionException e) {
 				log.error(e);
 				ServletUtility.handleException(e, request, response);
 				return;
