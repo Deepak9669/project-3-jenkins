@@ -180,24 +180,5 @@ public final class ModelFactory {
 		return facultyModel;
 	}
 
-	public BusModelInt getBusModel() {
-
-		BusModelInt busModel = (BusModelInt) modelCache.get("busModel");
-
-		if (busModel == null) {
-
-			if ("Hibernate".equals(DATABASE)) {
-				busModel = new BusModelHibImpl();
-			}
-
-			if ("JDBC".equals(DATABASE)) {
-				busModel = new BusModelJDBCImpl();
-			}
-
-			modelCache.put("busModel", busModel);
-		}
-
-		return busModel;
-	}
 
 }

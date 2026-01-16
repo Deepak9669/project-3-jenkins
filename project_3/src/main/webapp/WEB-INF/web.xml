@@ -15,6 +15,12 @@
 		<location>/ErrorCtl</location>
 	</error-page>
 
+ <error-page>
+		<exception-type>org.hibernate.JDBCConnectionException</exception-type>
+		<location>/ErrorCtl</location>
+	</error-page>
+
+
 
 
 </web-app>
