@@ -321,8 +321,4 @@ i.css {
 <%@include file="FooterView.jsp"%>
 
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> a227d54809b13256f3250a3c58b5b91b8b014329
