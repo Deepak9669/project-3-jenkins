@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
  * @author Deepak Verma
  * 
  * 
+ 
  *
  */
 public final class ModelFactory {
@@ -182,6 +183,7 @@ public final class ModelFactory {
 
 	public BusModelInt getBusModel() {
 
+<<<<<<< HEAD
 		BusModelInt busModel = (BusModelInt) modelCache.get("busModel");
 
 		if (busModel == null) {
@@ -199,5 +201,24 @@ public final class ModelFactory {
 
 		return busModel;
 	}
+=======
+    BusModelInt busModel = (BusModelInt) modelCache.get("busModel");
+
+    if (busModel == null) {
+
+        if ("Hibernate".equals(DATABASE)) {
+            busModel = new BusModelHibImpl();
+        }
+
+        if ("JDBC".equals(DATABASE)) {
+            busModel = new BusModelJDBCImpl();
+        }
+
+        modelCache.put("busModel", busModel);
+    }
+
+    return busModel;
+}
+>>>>>>> ba304058d9a685c53a2a2b5b26af1ab803c33477
 
 }
