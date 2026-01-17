@@ -183,22 +183,22 @@ public final class ModelFactory {
 
 	public BusModelInt getBusModel() {
 
-		BusModelInt busModel = (BusModelInt) modelCache.get("busModel");
+    BusModelInt busModel = (BusModelInt) modelCache.get("busModel");
 
-		if (busModel == null) {
+    if (busModel == null) {
 
-			if ("Hibernate".equals(DATABASE)) {
-				busModel = new BusModelHibImpl();
-			}
+        if ("Hibernate".equals(DATABASE)) {
+            busModel = new BusModelHibImpl();
+        }
 
-			if ("JDBC".equals(DATABASE)) {
-				busModel = new BusModelJDBCImpl();
-			}
+        if ("JDBC".equals(DATABASE)) {
+            busModel = new BusModelJDBCImpl();
+        }
 
-			modelCache.put("busModel", busModel);
-		}
+        modelCache.put("busModel", busModel);
+    }
 
-		return busModel;
-	}
+    return busModel;
+}
 
 }
