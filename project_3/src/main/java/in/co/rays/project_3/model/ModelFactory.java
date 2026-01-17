@@ -7,9 +7,6 @@ import java.util.ResourceBundle;
  * ModelFactory decides which model implementation run
  * 
  * @author Deepak Verma
- * 
- * 
- 
  *
  */
 public final class ModelFactory {
@@ -20,7 +17,6 @@ public final class ModelFactory {
 	private static HashMap modelCache = new HashMap();
 
 	private ModelFactory() {
-
 	}
 
 	public static ModelFactory getInstance() {
@@ -63,7 +59,6 @@ public final class ModelFactory {
 		if (collegeModel == null) {
 			if ("Hibernate".equals(DATABASE)) {
 				collegeModel = new CollegeModelHibImp();
-
 			}
 			if ("JDBC".equals(DATABASE)) {
 				collegeModel = new CollegeModelJDBCImpl();
@@ -78,7 +73,6 @@ public final class ModelFactory {
 		if (roleModel == null) {
 			if ("Hibernate".equals(DATABASE)) {
 				roleModel = new RoleModelHibImp();
-
 			}
 			if ("JDBC".equals(DATABASE)) {
 				roleModel = new RoleModelJDBCImpl();
@@ -89,7 +83,6 @@ public final class ModelFactory {
 	}
 
 	public UserModelInt getUserModel() {
-
 		UserModelInt userModel = (UserModelInt) modelCache.get("userModel");
 		if (userModel == null) {
 			if ("Hibernate".equals(DATABASE)) {
@@ -100,7 +93,6 @@ public final class ModelFactory {
 			}
 			modelCache.put("userModel", userModel);
 		}
-
 		return userModel;
 	}
 
@@ -115,7 +107,6 @@ public final class ModelFactory {
 			}
 			modelCache.put("studentModel", studentModel);
 		}
-
 		return studentModel;
 	}
 
@@ -130,14 +121,11 @@ public final class ModelFactory {
 			}
 			modelCache.put("courseModel", courseModel);
 		}
-
 		return courseModel;
 	}
 
 	public TimetableModelInt getTimetableModel() {
-
 		TimetableModelInt timetableModel = (TimetableModelInt) modelCache.get("timetableModel");
-
 		if (timetableModel == null) {
 			if ("Hibernate".equals(DATABASE)) {
 				timetableModel = new TimetableModelHibImp();
@@ -147,7 +135,6 @@ public final class ModelFactory {
 			}
 			modelCache.put("timetableModel", timetableModel);
 		}
-
 		return timetableModel;
 	}
 
@@ -162,7 +149,6 @@ public final class ModelFactory {
 			}
 			modelCache.put("subjectModel", subjectModel);
 		}
-
 		return subjectModel;
 	}
 
@@ -177,12 +163,10 @@ public final class ModelFactory {
 			}
 			modelCache.put("facultyModel", facultyModel);
 		}
-
 		return facultyModel;
 	}
 
 	public BusModelInt getBusModel() {
-
 
 		BusModelInt busModel = (BusModelInt) modelCache.get("busModel");
 
@@ -201,23 +185,5 @@ public final class ModelFactory {
 
 		return busModel;
 	}
-    BusModelInt busModel = (BusModelInt) modelCache.get("busModel");
-
-    if (busModel == null) {
-
-        if ("Hibernate".equals(DATABASE)) {
-            busModel = new BusModelHibImpl();
-        }
-
-        if ("JDBC".equals(DATABASE)) {
-            busModel = new BusModelJDBCImpl();
-        }
-
-        modelCache.put("busModel", busModel);
-    }
-
-    return busModel;
-}
-
 
 }
