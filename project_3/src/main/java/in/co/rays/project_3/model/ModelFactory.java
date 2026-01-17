@@ -183,7 +183,7 @@ public final class ModelFactory {
 
 	public BusModelInt getBusModel() {
 
-<<<<<<< HEAD
+
 		BusModelInt busModel = (BusModelInt) modelCache.get("busModel");
 
 		if (busModel == null) {
@@ -201,7 +201,6 @@ public final class ModelFactory {
 
 		return busModel;
 	}
-=======
     BusModelInt busModel = (BusModelInt) modelCache.get("busModel");
 
     if (busModel == null) {
@@ -219,6 +218,6 @@ public final class ModelFactory {
 
     return busModel;
 }
->>>>>>> ba304058d9a685c53a2a2b5b26af1ab803c33477
+
 
 }
