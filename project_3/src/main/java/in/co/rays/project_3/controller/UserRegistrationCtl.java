@@ -13,6 +13,7 @@ import in.co.rays.project_3.dto.BaseDTO;
 import in.co.rays.project_3.dto.RoleDTO;
 import in.co.rays.project_3.dto.UserDTO;
 import in.co.rays.project_3.exception.ApplicationException;
+import in.co.rays.project_3.exception.DatabaseDownException;
 import in.co.rays.project_3.exception.DatabaseException;
 import in.co.rays.project_3.exception.DuplicateRecordException;
 import in.co.rays.project_3.model.ModelFactory;
@@ -170,7 +171,7 @@ public class UserRegistrationCtl extends BaseCtl {
 
 				ServletUtility.handleException(e, request, response);
 				return;
-			}
+			} 
 			ServletUtility.setSuccessMessage("Registration successfully", request);
 			ServletUtility.forward(ORSView.USER_REGISTRATION_VIEW, request, response);
 		} else if (OP_RESET.equalsIgnoreCase(op)) {

@@ -81,7 +81,12 @@ i.css {
 							<!--Body-->
 							<div>
 								<%
-									List l = (List) request.getAttribute("studenList");
+									// ✅ CHANGE 1: studenList -> studentList
+									// ✅ CHANGE 2: null-safe list
+									List l = (List) request.getAttribute("studentList");
+									if (l == null) {
+										l = new java.util.ArrayList();
+									}
 								%>
 
 								<H4 align="center">
@@ -241,8 +246,6 @@ i.css {
 					</div>
 				</div>
 
-
-
 			</div>
 	</div>
 
@@ -252,7 +255,6 @@ i.css {
 
 	</form>
 	</main>
-
 
 	</div>
 

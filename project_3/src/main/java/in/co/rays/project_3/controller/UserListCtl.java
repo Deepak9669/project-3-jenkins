@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import in.co.rays.project_3.dto.BaseDTO;
 import in.co.rays.project_3.dto.UserDTO;
 import in.co.rays.project_3.exception.ApplicationException;
+import in.co.rays.project_3.exception.DatabaseDownException;
 import in.co.rays.project_3.model.ModelFactory;
 import in.co.rays.project_3.model.RoleModelInt;
 import in.co.rays.project_3.model.UserModelInt;
@@ -64,57 +65,74 @@ public class UserListCtl extends BaseCtl {
 	/**
 	 * Contains Display logics
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	        throws ServletException, IOException {
 
-		log.debug("UserListCtl doGet Start");
+	    log.debug("UserListCtl doGet Start");
 
-		List list;
-		List next;
+	    List<UserDTO> list = null;
+	    List<UserDTO> next = null;
 
-		int pageNo = 1;
-		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
+	    int pageNo = 1;
+	    int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
 
-		UserDTO dto = (UserDTO) populateDTO(request);
-		// get the selected checkbox ids array for delete list
+	    UserDTO dto = (UserDTO) populateDTO(request);
+	    UserModelInt model = ModelFactory.getInstance().getUserModel();
 
-		UserModelInt model = ModelFactory.getInstance().getUserModel();
-		try {
+	    try {
+	        // ✅ Search current page
+	        list = model.search(dto, pageNo, pageSize);
 
-			list = model.search(dto, pageNo, pageSize);
+	        // ✅ Search next page (for Next button enable/disable)
+	        next = model.search(dto, pageNo + 1, pageSize);
 
-			ArrayList<UserDTO> a = (ArrayList<UserDTO>) list;
+	        // ✅ Set list on request
+	        ServletUtility.setList(list, request);
 
-			for (UserDTO udto1 : a) {
-				System.out.println(udto1.getRoleId() + "[[[[[[[[[[[--------------------");
-			}
+	        // ✅ Message show on UI
+	        if (list == null || list.size() == 0) {
+	            ServletUtility.setErrorMessage("No record found", request);
+	        } else {
+	            // ✅ Success Message
+	            ServletUtility.setSuccessMessage("✅ User list loaded successfully", request);
+	        }
 
-			System.out.println(list + "----------------------------------------------------------");
-			System.out.println(list.indexOf(3));
-			next = model.search(dto, pageNo + 1, pageSize);
-			ServletUtility.setList(list, request);
-			if (list == null || list.size() == 0) {
-				ServletUtility.setErrorMessage("No record found ", request);
-			}
-			if (next == null || next.size() == 0) {
-				request.setAttribute("nextListSize", 0);
+	        // ✅ Next page size handling
+	        if (next == null || next.size() == 0) {
+	            request.setAttribute("nextListSize", 0);
+	        } else {
+	            request.setAttribute("nextListSize", next.size());
+	        }
 
-			} else {
-				request.setAttribute("nextListSize", next.size());
-			}
-			ServletUtility.setList(list, request);
-			ServletUtility.setPageNo(pageNo, request);
-			ServletUtility.setPageSize(pageSize, request);
-			ServletUtility.forward(getView(), request, response);
-		} catch (ApplicationException e) {
-			log.error(e);
-			ServletUtility.handleException(e, request, response);
-			return;
-		} catch (Exception e) {
+	        // ✅ Pagination attributes
+	        ServletUtility.setPageNo(pageNo, request);
+	        ServletUtility.setPageSize(pageSize, request);
 
-			e.printStackTrace();
-		}
-		log.debug("UserListCtl doPOst End");
+	        //  Forward to view
+	        ServletUtility.forward(getView(), request, response);
+
+	    } catch (ApplicationException e) {
+	        log.error("User search failed", e);
+
+	        //  Database Down / connection msg
+	        ServletUtility.setErrorMessage("Database Down! Please start MySQL / check DB connection.", request);
+
+	        //  Forward again on same page
+	        ServletUtility.forward(getView(), request, response);
+	        return;
+
+	    } catch (Exception e) {
+	        log.error("Unexpected error", e);
+
+	        //  Generic fallback msg
+	        ServletUtility.setErrorMessage("❌ Something went wrong! Please try again.", request);
+
+	        ServletUtility.forward(getView(), request, response);
+	        return;
+	    }
+
+	    log.debug("UserListCtl doGet End");
 	}
 
 	/**

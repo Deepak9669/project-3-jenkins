@@ -17,7 +17,7 @@ import in.co.rays.project_3.util.ServletUtility;
 
 /**
  * Front Functionality ctl. to perform session checking and logging operation
- * @author Deepak Verma
+ * @author Deepak verma
  *
  */
 @WebFilter(urlPatterns={"/ctl/*","/doc/*"})
@@ -31,6 +31,9 @@ public class FrontController implements Filter {
 		
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
+		
+		// save original controller path for error handling
+		request.setAttribute("ORIGINAL_CTL", request.getRequestURI());
 		
 		HttpSession session = request.getSession();
 		
@@ -49,8 +52,3 @@ public class FrontController implements Filter {
 	}
 
 }
-
-
-
-
-

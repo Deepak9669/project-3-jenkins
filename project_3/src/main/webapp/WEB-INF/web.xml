@@ -3,18 +3,34 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-	<display-name>Archetype Created Web Application</display-name>
+    <display-name>Archetype Created Web Application</display-name>
 
-	<error-page>
-		<error-code>404</error-code>
-		<location>/jsp/ErrorView404.jsp</location>
-	</error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/jsp/ErrorView404.jsp</location>
+    </error-page>
 
-	<error-page>
-		<exception-type>org.hibernate.exception.JDBCConnectionException</exception-type>
-		<location>/ErrorCtl</location>
-	</error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/jsp/ErrorView500.jsp</location>
+    </error-page>
 
+    <!-- ✅ Hibernate DB Connection -->
+    <error-page>
+        <exception-type>org.hibernate.exception.JDBCConnectionException</exception-type>
+        <location>/ErrorCtl</location>
+    </error-page>
 
+    <!-- ✅ MySQL Driver Communication -->
+    <error-page>
+        <exception-type>com.mysql.cj.exceptions.CJCommunicationsException</exception-type>
+        <location>/ErrorCtl</location>
+    </error-page>
+
+    <!-- ✅ Fallback: any exception -->
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/ErrorCtl</location>
+    </error-page>
 
 </web-app>

@@ -162,20 +162,20 @@ public class BusCtl extends BaseCtl {
 			if (id > 0) {
 				try {
 					model.update(dto);
+					ServletUtility.setSuccessMessage("Data is successfully Updated", request);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				ServletUtility.setSuccessMessage("Data is successfully Updated", request);
 
 			} else {
 				try {
 					model.add(dto);
+					ServletUtility.setSuccessMessage("Data is successfully saved", request);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					ServletUtility.handleException(e, request, response);
 					e.printStackTrace();
 				}
-				ServletUtility.setSuccessMessage("Data is successfully saved", request);
 			}
 
 			ServletUtility.setDto(dto, request);

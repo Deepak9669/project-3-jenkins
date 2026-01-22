@@ -9,6 +9,7 @@ import java.util.List;
 
 import in.co.rays.project_3.dto.UserDTO;
 import in.co.rays.project_3.exception.ApplicationException;
+import in.co.rays.project_3.exception.DatabaseDownException;
 import in.co.rays.project_3.model.UserModelHibImp;
 import in.co.rays.project_3.model.UserModelInt;
 import in.co.rays.project_3.model.UserModelJDBCImpl;
@@ -37,7 +38,7 @@ public class UserModelTest {
 
 	}
 
-	public static void searchTest() throws ApplicationException {
+	public static void searchTest() throws ApplicationException, DatabaseDownException {
 		// TODO Auto-generated method stub
 		UserDTO dto = new UserDTO();
        dto.setId(2L);

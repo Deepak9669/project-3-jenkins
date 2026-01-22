@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.eclipse.jdt.internal.compiler.env.ISourceMethod;
 
 import in.co.rays.project_3.dto.BaseDTO;
 import in.co.rays.project_3.dto.MarksheetDTO;
@@ -37,19 +36,33 @@ public class MarksheetCtl extends BaseCtl {
 	
 	private static Logger log = Logger.getLogger(MarksheetCtl.class);
 
+	@Override
 	protected void preload(HttpServletRequest request) {
-		
-		StudentModelInt model = ModelFactory.getInstance().getStudentModel();
-		try {
-			List li = model.list();
-			request.setAttribute("studenList", li);
-			System.out.println("add marksheet" + li);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.error(e);
-		}
+	    StudentModelInt model = ModelFactory.getInstance().getStudentModel();
+
+	    try {
+	        // ✅ Student list DB se load
+	        List li = model.list();
+
+	        // ✅ JSP me isi name se fetch hoga
+	        request.setAttribute("studentList", li);
+
+	        System.out.println("Student List in preload = " + li);
+
+	    } catch (Exception e) {
+
+	        // ✅ null list se JSP crash na ho
+	        request.setAttribute("studentList", new java.util.ArrayList());
+
+	        // ✅ Screen pe error message show ho
+	        ServletUtility.setErrorMessage("Database down. Please start MySQL container.", request);
+
+	        e.printStackTrace();
+	        log.error(e);
+	    }
 	}
+
 
 	protected boolean validate(HttpServletRequest request) {
 		

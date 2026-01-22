@@ -4,6 +4,7 @@ import java.util.List;
 
 import in.co.rays.project_3.dto.UserDTO;
 import in.co.rays.project_3.exception.ApplicationException;
+import in.co.rays.project_3.exception.DatabaseDownException;
 import in.co.rays.project_3.exception.DuplicateRecordException;
 import in.co.rays.project_3.exception.RecordNotFoundException;
 
@@ -20,8 +21,8 @@ public UserDTO findByPK(long pk)throws ApplicationException;
 public UserDTO findByLogin(String login)throws ApplicationException;
 public List list()throws ApplicationException;
 public List list(int pageNo,int pageSize)throws ApplicationException;
-public List search(UserDTO dto,int pageNo,int pageSize)throws ApplicationException;
-public List search(UserDTO dto)throws ApplicationException;
+public List search(UserDTO dto,int pageNo,int pageSize)throws ApplicationException, DatabaseDownException;
+public List search(UserDTO dto)throws ApplicationException, DatabaseDownException;
 public boolean changePassword(long id,String newPassword,String oldPassword)throws ApplicationException, RecordNotFoundException;
 public UserDTO authenticate(String login,String password)throws ApplicationException;
 public boolean forgetPassword(String login)throws ApplicationException, RecordNotFoundException;

@@ -181,31 +181,39 @@ public class UserCtl extends BaseCtl {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
+	        throws IOException, ServletException {
 
-		log.debug("UserCtl Method doGet Started");
+	    log.debug("UserCtl Method doGet Started");
 
-		String op = DataUtility.getString(request.getParameter("operation"));
+	    String op = DataUtility.getString(request.getParameter("operation"));
 
-		// get model
-		UserModelInt model = ModelFactory.getInstance().getUserModel();
-		long id = DataUtility.getLong(request.getParameter("id"));
+	    // get model
+	    UserModelInt model = ModelFactory.getInstance().getUserModel();
+	    long id = DataUtility.getLong(request.getParameter("id"));
 
-		if (id > 0 || op != null) {
-			System.out.println("in id > 0  condition");
-			UserDTO dto = null;
-			try {
-				dto = model.findByPK(id);
-				ServletUtility.setDto(dto, request);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.error(e);
-				ServletUtility.handleException(e, request, response);
-				return;
-			}
-		}
-		ServletUtility.forward(getView(), request, response);
+	    if (id > 0 || op != null) {
+	        System.out.println("in id > 0  condition");
+	        UserDTO dto = null;
+	        try {
+	            dto = model.findByPK(id);
+	            ServletUtility.setDto(dto, request);
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            log.error(e);
+
+	            // ✅ Database down message set
+	            ServletUtility.setErrorMessage("Database Down", request);
+
+	            // ✅ Same view par forward
+	            ServletUtility.forward(getView(), request, response);
+	            return;
+	        }
+	    }
+
+	    ServletUtility.forward(getView(), request, response);
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {

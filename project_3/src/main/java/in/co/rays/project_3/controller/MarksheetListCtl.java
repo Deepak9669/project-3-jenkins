@@ -68,48 +68,62 @@ public class MarksheetListCtl extends BaseCtl {
 	 * ContainsDisplaylogics
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	        throws ServletException, IOException {
 
-		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
-		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
+	    int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
+	    int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
 
-		pageNo = (pageNo == 0) ? 1 : pageNo;
+	    pageNo = (pageNo == 0) ? 1 : pageNo;
 
-		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
+	    pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
 
-		MarksheetDTO dto = (MarksheetDTO) populateDTO(request);
+	    MarksheetDTO dto = (MarksheetDTO) populateDTO(request);
 
-		List list = null;
-		List next = null;
+	    List list = null;
+	    List next = null;
 
-		MarksheetModelInt model = ModelFactory.getInstance().getMarksheetModel();
-		try {
-			list = model.search(dto, pageNo, pageSize);
-			ServletUtility.setDto(dto, request);
-			next = model.search(dto, pageNo + 1, pageSize);
+	    MarksheetModelInt model = ModelFactory.getInstance().getMarksheetModel();
 
-		} catch (ApplicationException e) {
-			log.error(e);
-			ServletUtility.handleException(e, request, response);
-			return;
-		}
+	    try {
+	        list = model.search(dto, pageNo, pageSize);
+	        ServletUtility.setDto(dto, request);
+	        next = model.search(dto, pageNo + 1, pageSize);
 
-		if (list == null || list.size() == 0) {
-			ServletUtility.setErrorMessage("No record found ", request);
-		}
-		if (next == null || next.size() == 0) {
-			request.setAttribute("nextListSize", 0);
+	    } catch (ApplicationException e) {
 
-		} else {
-			request.setAttribute("nextListSize", next.size());
-		}
-		ServletUtility.setList(list, request);
-		ServletUtility.setPageNo(pageNo, request);
-		ServletUtility.setPageSize(pageSize, request);
-		ServletUtility.forward(getView(), request, response);
-		log.debug("MarksheetListCtl doGet End");
+	        // ✅ DB down case: page crash stop
+	        list = new java.util.ArrayList();
+	        next = new java.util.ArrayList();
 
+	        // ✅ user ko message dikhana hai
+	        ServletUtility.setErrorMessage("Database down. Please start MySQL container.", request);
+
+	        e.printStackTrace();
+	        log.error(e);
+	    }
+
+	    if (list == null || list.size() == 0) {
+
+	        // ✅ Agar DB down message already set hai to "No record found" mat dikhana
+	        if (ServletUtility.getErrorMessage(request) == null || ServletUtility.getErrorMessage(request).equals("")) {
+	            ServletUtility.setErrorMessage("No record found ", request);
+	        }
+	    }
+
+	    if (next == null || next.size() == 0) {
+	        request.setAttribute("nextListSize", 0);
+
+	    } else {
+	        request.setAttribute("nextListSize", next.size());
+	    }
+
+	    ServletUtility.setList(list, request);
+	    ServletUtility.setPageNo(pageNo, request);
+	    ServletUtility.setPageSize(pageSize, request);
+	    ServletUtility.forward(getView(), request, response);
+	    log.debug("MarksheetListCtl doGet End");
 	}
+
 
 	/**
 	 * Contains Submit logics

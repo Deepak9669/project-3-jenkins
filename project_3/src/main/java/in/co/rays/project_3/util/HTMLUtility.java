@@ -124,39 +124,40 @@ public class HTMLUtility {
 */
 	public static String getList(String name, String selectedVal, List list) {
 
-        Collections.sort(list);       
-        StringBuffer sb = new StringBuffer("<select class='form-control' style='border: 2px solid #8080803b;' class='form-control' name='" + name + "'>");
+	    // ✅ null-safe (DB down / preload fail case)
+	    if (list == null) {
+	        list = new java.util.ArrayList();
+	    }
 
-        boolean select=true;
-        if (select)
-        {
+	    Collections.sort(list);
 
-            sb.append("<option class='dropdown-item' style='border: 2px solid #8080803b;' selected value=''>------Select a "+ name +"---------</option>");
-        }
+	    StringBuffer sb = new StringBuffer("<select class='form-control' style='border: 2px solid #8080803b;' class='form-control' name='" + name + "'>");
 
-        
-        List<DropdownList> dd = (List<DropdownList>) list;
+	    boolean select=true;
+	    if (select) {
+	        sb.append("<option class='dropdown-item' style='border: 2px solid #8080803b;' selected value=''>------Select a "+ name +"---------</option>");
+	    }
 
-       // StringBuffer sb = new StringBuffer(       "<select style='width: 163px;  height: 23px;' class='form-control' name='" + name + "'>");
-        
-        String key = null;
-        String val = null;
+	    List<DropdownList> dd = (List<DropdownList>) list;
 
-        for (DropdownList obj : dd) {
-            key = obj.getKey();
-            val = obj.getValue();
+	    String key = null;
+	    String val = null;
 
-            if (key.trim().equals(selectedVal)) {
-                sb.append("<option selected value='" + key + "'>" + val
-                        + "</option>");
-            } else {
-                sb.append("<option value='" + key + "'>" + val + "</option>");
-            }
-        }
-        sb.append("</select>");
-        System.out.println("get list 2=========" +sb.toString());
-        return sb.toString();
-    }
+	    for (DropdownList obj : dd) {
+	        key = obj.getKey();
+	        val = obj.getValue();
+
+	        if (key.trim().equals(selectedVal)) {
+	            sb.append("<option selected value='" + key + "'>" + val + "</option>");
+	        } else {
+	            sb.append("<option value='" + key + "'>" + val + "</option>");
+	        }
+	    }
+
+	    sb.append("</select>");
+	    System.out.println("get list 2=========" +sb.toString());
+	    return sb.toString();
+	}
 
 	
     /*public static String getList(String name, String selectedVal,
