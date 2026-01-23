@@ -40,26 +40,27 @@ public class UserCtl extends BaseCtl {
 
 protected void preload(HttpServletRequest request) {
 
-    RoleModelInt model = ModelFactory.getInstance().getRoleModel();
+		RoleModelInt model = ModelFactory.getInstance().getRoleModel();
 
-    try {
-        List list = model.list();
-        request.setAttribute("roleList", list);
+		try {
+			List list = model.list();
+			Iterator it = list.iterator();
 
-        request.setAttribute("dbDown", false);
-        request.setAttribute("errorMessage", null);
+			while (it.hasNext()) {
+				RoleDTO dto = (RoleDTO) it.next();
+				System.out.println(dto.getId());
+				System.out.println(dto.getName());
+				System.out.println(dto.getDescription());
 
-    } catch (Exception e) {
-        e.printStackTrace();
+			}
 
-        // ✅ roleList safe
-        request.setAttribute("roleList", new ArrayList());
+			request.setAttribute("roleList", list);
 
-        // ✅ DB down message
-        request.setAttribute("dbDown", true);
-        request.setAttribute("errorMessage", "Database down!!!");
-    }
-}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 
 
 	protected boolean validate(HttpServletRequest request) {
