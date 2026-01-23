@@ -1,6 +1,7 @@
 package in.co.rays.project_3.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class UserCtl extends BaseCtl {
 
 	private static Logger log = Logger.getLogger(UserCtl.class);
 
-protected void preload(HttpServletRequest request) {
+	protected void preload(HttpServletRequest request) {
 
 		RoleModelInt model = ModelFactory.getInstance().getRoleModel();
 
@@ -61,7 +62,6 @@ protected void preload(HttpServletRequest request) {
 		}
 
 	}
-
 
 	protected boolean validate(HttpServletRequest request) {
 
