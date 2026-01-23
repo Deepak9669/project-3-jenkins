@@ -38,29 +38,29 @@ public class UserCtl extends BaseCtl {
 
 	private static Logger log = Logger.getLogger(UserCtl.class);
 
-	protected void preload(HttpServletRequest request) {
+protected void preload(HttpServletRequest request) {
 
-		RoleModelInt model = ModelFactory.getInstance().getRoleModel();
+    RoleModelInt model = ModelFactory.getInstance().getRoleModel();
 
-		try {
-			List list = model.list();
-			Iterator it = list.iterator();
+    try {
+        List list = model.list();
+        request.setAttribute("roleList", list);
 
-			while (it.hasNext()) {
-				RoleDTO dto = (RoleDTO) it.next();
-				System.out.println(dto.getId());
-				System.out.println(dto.getName());
-				System.out.println(dto.getDescription());
+        request.setAttribute("dbDown", false);
+        request.setAttribute("errorMessage", null);
 
-			}
+    } catch (Exception e) {
+        e.printStackTrace();
 
-			request.setAttribute("roleList", list);
+        // ✅ roleList safe
+        request.setAttribute("roleList", new ArrayList());
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        // ✅ DB down message
+        request.setAttribute("dbDown", true);
+        request.setAttribute("errorMessage", "Database down!!!");
+    }
+}
 
-	}
 
 	protected boolean validate(HttpServletRequest request) {
 
