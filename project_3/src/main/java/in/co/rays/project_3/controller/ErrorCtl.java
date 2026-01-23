@@ -38,7 +38,7 @@ public class ErrorCtl extends BaseCtl {
 	private void process(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); // 500
+		
 
 		String lastCtl = (String) request.getAttribute("javax.servlet.error.request_uri");
 
