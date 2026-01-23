@@ -94,8 +94,6 @@ public class UserListCtl extends BaseCtl {
 	        if (list == null || list.size() == 0) {
 	            ServletUtility.setErrorMessage("No record found", request);
 	        } else {
-	            // ✅ Success Message
-	            ServletUtility.setSuccessMessage("✅ User list loaded successfully", request);
 	        }
 
 	        // ✅ Next page size handling
