@@ -44,10 +44,10 @@ public class ErrorCtl extends BaseCtl {
             ex.printStackTrace();
         }
 
-        // ✅ Decide which JSP to show
+        //  Decide which JSP to show
         String view = getViewFromCtl(lastCtl);
 
-        // ✅ Decide message (DB down or general)
+        //  Decide message (DB down or general)
         String msg = getMessage(ex);
         ServletUtility.setErrorMessage(msg, request);
 
@@ -71,7 +71,7 @@ public class ErrorCtl extends BaseCtl {
             request.setAttribute("nextListSize", 0);
         }
 
-        // ✅ ALWAYS JSP forward
+        //  ALWAYS JSP forward
         ServletUtility.forward(view, request, response);
     }
 

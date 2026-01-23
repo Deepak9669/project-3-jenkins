@@ -67,72 +67,70 @@ public class UserListCtl extends BaseCtl {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
+			throws ServletException, IOException {
 
-	    log.debug("UserListCtl doGet Start");
+		log.debug("UserListCtl doGet Start");
 
-	    List<UserDTO> list = null;
-	    List<UserDTO> next = null;
+		List<UserDTO> list = null;
+		List<UserDTO> next = null;
 
-	    int pageNo = 1;
-	    int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
+		int pageNo = 1;
+		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
 
-	    UserDTO dto = (UserDTO) populateDTO(request);
-	    UserModelInt model = ModelFactory.getInstance().getUserModel();
+		UserDTO dto = (UserDTO) populateDTO(request);
+		UserModelInt model = ModelFactory.getInstance().getUserModel();
 
-	    try {
-	        // ✅ Search current page
-	        list = model.search(dto, pageNo, pageSize);
+		try {
+			// Search current page
+			list = model.search(dto, pageNo, pageSize);
 
-	        // ✅ Search next page (for Next button enable/disable)
-	        next = model.search(dto, pageNo + 1, pageSize);
+			// Search next page (for Next button enable/disable)
+			next = model.search(dto, pageNo + 1, pageSize);
 
-	        // ✅ Set list on request
-	        ServletUtility.setList(list, request);
+			// Set list on request
+			ServletUtility.setList(list, request);
 
-	        // ✅ Message show on UI
-	        if (list == null || list.size() == 0) {
-	            ServletUtility.setErrorMessage("No record found", request);
-	        } else {
-	            // ✅ Success Message
-	            ServletUtility.setSuccessMessage("✅ User list loaded successfully", request);
-	        }
+			// Message show on UI
+			if (list == null || list.size() == 0) {
+				ServletUtility.setErrorMessage("No record found", request);
+			} else {
+			}
 
-	        // ✅ Next page size handling
-	        if (next == null || next.size() == 0) {
-	            request.setAttribute("nextListSize", 0);
-	        } else {
-	            request.setAttribute("nextListSize", next.size());
-	        }
+			// Next page size handling
+			if (next == null || next.size() == 0) {
+				request.setAttribute("nextListSize", 0);
+			} else {
+				request.setAttribute("nextListSize", next.size());
+			}
 
-	        // ✅ Pagination attributes
-	        ServletUtility.setPageNo(pageNo, request);
-	        ServletUtility.setPageSize(pageSize, request);
+			// Pagination attributes
+			ServletUtility.setPageNo(pageNo, request);
+			ServletUtility.setPageSize(pageSize, request);
 
-	        //  Forward to view
-	        ServletUtility.forward(getView(), request, response);
+			// Forward to view
+			ServletUtility.forward(getView(), request, response);
 
-	    } catch (ApplicationException e) {
-	        log.error("User search failed", e);
+		} catch (ApplicationException e) {
+			log.error("User search failed", e);
 
-	        //  Database Down / connection msg
-	        ServletUtility.setErrorMessage("Database Down! Please start MySQL / check DB connection.", request);
+			// Database Down / connection msg
+			ServletUtility.setErrorMessage("Database Down! Please start MySQL / check DB connection.", request);
 
-	        //  Forward again on same page
-	        ServletUtility.forward(getView(), request, response);
-	        return;
+			// Forward again on same page
+			ServletUtility.forward(getView(), request, response);
+			return;
 
-	    } catch (Exception e) {
-	        log.error("Unexpected error", e);
+		} catch (Exception e) {
+			log.error("Unexpected error", e);
 
-	        //  Generic fallback msg
-	        ServletUtility.setErrorMessage("❌ Something went wrong! Please try again.", request);
+			// Generic fallback msg
+			ServletUtility.setErrorMessage("❌ Something went wrong! Please try again.", request);
 
-	        ServletUtility.forward(getView(), request, response);
-	        return;
-	    }
+			ServletUtility.forward(getView(), request, response);
+			return;
+		}
 
-	    log.debug("UserListCtl doGet End");
+		log.debug("UserListCtl doGet End");
 	}
 
 	/**

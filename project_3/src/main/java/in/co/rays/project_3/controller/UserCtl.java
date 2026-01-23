@@ -1,6 +1,7 @@
 package in.co.rays.project_3.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -187,12 +188,27 @@ public class UserCtl extends BaseCtl {
 
 	    String op = DataUtility.getString(request.getParameter("operation"));
 
+	    //  call preload first (Roles)
+	    try {
+	        preload(request); // Role list load
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        log.error(e);
+
+	        // preload fail => db down
+	        ServletUtility.setErrorMessage("Database Down (Roles not loaded)", request);
+	        request.setAttribute("roleList", new ArrayList());
+
+	        ServletUtility.forward(getView(), request, response);
+	        return;
+	    }
+
 	    // get model
 	    UserModelInt model = ModelFactory.getInstance().getUserModel();
 	    long id = DataUtility.getLong(request.getParameter("id"));
 
 	    if (id > 0 || op != null) {
-	        System.out.println("in id > 0  condition");
+	        System.out.println("in id > 0 condition");
 	        UserDTO dto = null;
 	        try {
 	            dto = model.findByPK(id);
@@ -202,10 +218,10 @@ public class UserCtl extends BaseCtl {
 	            e.printStackTrace();
 	            log.error(e);
 
-	            // ✅ Database down message set
-	            ServletUtility.setErrorMessage("Database Down", request);
+	            //  Database down message set
+	            ServletUtility.setErrorMessage("Database Down!!!", request);
 
-	            // ✅ Same view par forward
+	            //  forward
 	            ServletUtility.forward(getView(), request, response);
 	            return;
 	        }

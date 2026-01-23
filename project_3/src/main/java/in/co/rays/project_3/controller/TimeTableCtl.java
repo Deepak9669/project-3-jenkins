@@ -111,31 +111,53 @@ public class TimeTableCtl extends BaseCtl {
 	 * Display Logics inside this method
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
+	        throws IOException, ServletException {
 
-		log.debug("time table do get start");
+	    log.debug("time table do get start");
 
-		String op = DataUtility.getString(request.getParameter("operation"));
-		long id = DataUtility.getLong(request.getParameter("id"));
+	    String op = DataUtility.getString(request.getParameter("operation"));
+	    long id = DataUtility.getLong(request.getParameter("id"));
 
-		TimetableModelInt model = ModelFactory.getInstance().getTimetableModel();
+	    // ✅ Preload call (agar aapke ctl me preload hai)
+	    try {
+	        preload(request);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        log.error(e);
 
-		if (id > 0 || op != null) {
-			TimetableDTO dto;
-			try {
-				dto = model.findByPK(id);
-				ServletUtility.setDto(dto, request);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.debug(e);
-				ServletUtility.handleException(e, request, response);
-				return;
-			}
+	        // ✅ Database down message set
+	        ServletUtility.setErrorMessage("Database Down. Please try again later.", request);
 
-		}
-		ServletUtility.forward(getView(), request, response);
-		log.debug("time table doget end");
+	        // ✅ Same view forward
+	        ServletUtility.forward(getView(), request, response);
+	        return;
+	    }
+
+	    TimetableModelInt model = ModelFactory.getInstance().getTimetableModel();
+
+	    if (id > 0 || op != null) {
+	        TimetableDTO dto;
+	        try {
+	            dto = model.findByPK(id);
+	            ServletUtility.setDto(dto, request);
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            log.error(e);
+
+	            //  Database down message set
+	            ServletUtility.setErrorMessage("Database Down!!!", request);
+
+	            //  same view forward
+	            ServletUtility.forward(getView(), request, response);
+	            return;
+	        }
+	    }
+
+	    ServletUtility.forward(getView(), request, response);
+	    log.debug("time table doget end");
 	}
+
 
 	/**
 	 * Submit logic inside it
