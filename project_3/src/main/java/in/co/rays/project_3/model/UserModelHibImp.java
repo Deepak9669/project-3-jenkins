@@ -11,6 +11,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.exception.JDBCConnectionException;
 
 import in.co.rays.project_3.dto.UserDTO;
 import in.co.rays.project_3.exception.ApplicationException;
@@ -51,7 +52,10 @@ public class UserModelHibImp implements UserModelInt {
 			System.out.println("trac2");
 			tx.commit();
 			System.out.println("trac3");
-		} catch (HibernateException e) {
+		}catch (JDBCConnectionException e) {
+			throw e;
+		}
+		catch (HibernateException e) {
 			e.printStackTrace();
 			// TODO: handle exception
 			if (tx != null) {

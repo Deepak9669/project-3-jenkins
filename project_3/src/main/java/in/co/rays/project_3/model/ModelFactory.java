@@ -9,8 +9,8 @@ import java.util.ResourceBundle;
  * @author Deepak Verma
  * 
  * 
- 
  *
+ * 
  */
 public final class ModelFactory {
 
@@ -200,6 +200,66 @@ public final class ModelFactory {
 
 		return busModel;
 	}
-  
+
+	public AuditModelInt getAuditModel() {
+
+		AuditModelInt auditModel = (AuditModelInt) modelCache.get("auditModel");
+
+		if (auditModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				auditModel = new AuditModelHibImpl();
+			}
+
+			modelCache.put("auditModel", auditModel);
+		}
+
+		return auditModel;
+	}
+	public DoctorModelInt getDoctorModel() {
+
+		DoctorModelInt doctorModel = (DoctorModelInt) modelCache.get("doctorModel");
+
+		if (doctorModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				doctorModel = new DoctorModelHibImpl();
+			}
+
+			modelCache.put("doctorModel", doctorModel);
+		}
+
+		return doctorModel;
+	}
+	public ExpenseModelInt getExpenseModel() {
+
+		ExpenseModelInt expenseModel = (ExpenseModelInt) modelCache.get("expenseModel");
+
+		if (expenseModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				expenseModel = new ExpenseModelHibImpl();
+			}
+
+			modelCache.put("expenseModel", expenseModel);
+		}
+
+		return expenseModel;
+	}
+	public JobModelInt getJobModel() {
+
+		JobModelInt jobModel = (JobModelInt) modelCache.get("jobModel");
+
+		if (jobModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				jobModel = new JobModelHibImpl();
+			}
+
+			modelCache.put("jobModel", jobModel);
+		}
+
+		return jobModel;
+	}
 
 }

@@ -50,7 +50,14 @@
 		<mapping
 			resource="in/co/rays/project_3/hbm/ProductDTO.hbm.xml" />
 
-	<mapping resource="in/co/rays/project_3/hbm/BusDTO.hbm.xml"></mapping>
+		<mapping resource="in/co/rays/project_3/hbm/BusDTO.hbm.xml"></mapping>
+
+		<mapping resource="in/co/rays/project_3/hbm/AuditDTO.hbm.xml"></mapping>
+		
+		<mapping resource="in/co/rays/project_3/hbm/DoctorDTO.hbm.xml"></mapping>
+		<mapping resource="in/co/rays/project_3/hbm/ExpenseDTO.hbm.xml"></mapping> 
+		
+		<mapping resource="in/co/rays/project_3/hbm/JobDTO.hbm.xml"></mapping> 
 
 	</session-factory>
 </hibernate-configuration>

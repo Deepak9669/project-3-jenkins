@@ -76,6 +76,22 @@ public interface ORSView {
 
 	public String BUS_LIST_VIEW = PAGE_FOLDER + "/BusListView.jsp";
 
+	public String AUDIT_VIEW = PAGE_FOLDER + "/AuditView.jsp";
+
+	public String AUDIT_LIST_VIEW = PAGE_FOLDER + "/AuditListView.jsp";
+
+	public String DOCTOR_VIEW = PAGE_FOLDER + "/DoctorView.jsp";
+
+	public String DOCTOR_LIST_VIEW = PAGE_FOLDER + "/DoctorListView.jsp";
+	
+	public String EXPENSE_VIEW = PAGE_FOLDER + "/ExpenseView.jsp";
+
+	public String EXPENSE_LIST_VIEW = PAGE_FOLDER + "/ExpenseListView.jsp";
+	
+	public String JOB_VIEW = PAGE_FOLDER + "/JobView.jsp";
+
+	public String JOB_LIST_VIEW = PAGE_FOLDER + "/JobListView.jsp";
+
 	public String ERROR_CTL = APP_CONTEXT + "/ErrorCtl";
 
 	public String MARKSHEET_CTL = APP_CONTEXT + "/ctl/MarksheetCtl";
@@ -137,5 +153,21 @@ public interface ORSView {
 	public String BUS_CTL = APP_CONTEXT + "/ctl/BusCtl";
 
 	public String BUS_LIST_CTL = APP_CONTEXT + "/ctl/BusListCtl";
+
+	public String AUDIT_CTL = APP_CONTEXT + "/ctl/AuditCtl";
+
+	public String AUDIT_LIST_CTL = APP_CONTEXT + "/ctl/AuditListCtl";
+
+	public String DOCTOR_CTL = APP_CONTEXT + "/ctl/DoctorCtl";
+
+	public String DOCTOR_LIST_CTL = APP_CONTEXT + "/ctl/DoctorListCtl";
+	
+	public String EXPENSE_CTL = APP_CONTEXT + "/ctl/ExpenseCtl";
+
+	public String EXPENSE_LIST_CTL = APP_CONTEXT + "/ctl/ExpenseListCtl";
+	
+	public String JOB_CTL = APP_CONTEXT + "/ctl/JobCtl";
+
+	public String JOB_LIST_CTL = APP_CONTEXT + "/ctl/JobListCtl";
 
 }
