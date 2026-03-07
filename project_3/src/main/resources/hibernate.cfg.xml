@@ -55,9 +55,14 @@
 		<mapping resource="in/co/rays/project_3/hbm/AuditDTO.hbm.xml"></mapping>
 		
 		<mapping resource="in/co/rays/project_3/hbm/DoctorDTO.hbm.xml"></mapping>
+		
 		<mapping resource="in/co/rays/project_3/hbm/ExpenseDTO.hbm.xml"></mapping> 
 		
 		<mapping resource="in/co/rays/project_3/hbm/JobDTO.hbm.xml"></mapping> 
+		
+		<mapping resource="in/co/rays/project_3/hbm/BranchManagerDTO.hbm.xml"></mapping>
+		
+		<mapping resource="in/co/rays/project_3/hbm/CertificateTemplateDTO.hbm.xml"></mapping>
 
 	</session-factory>
 </hibernate-configuration>

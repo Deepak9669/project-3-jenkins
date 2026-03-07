@@ -261,5 +261,42 @@ public final class ModelFactory {
 
 		return jobModel;
 	}
+	
+	public BranchManagerModelInt getBranchManagerModel() {
+
+	    BranchManagerModelInt branchManagerModel = 
+	        (BranchManagerModelInt) modelCache.get("branchManagerModel");
+
+	    if (branchManagerModel == null) {
+
+	        if ("Hibernate".equals(DATABASE)) {
+	            branchManagerModel = new BranchManagerModelHibImpl();
+	        }
+
+	        modelCache.put("branchManagerModel", branchManagerModel);
+	    }
+
+	    return branchManagerModel;
+	}
+	
+	
+	public CertificateTemplateModelInt getCertificateTemplateModel() {
+
+		CertificateTemplateModelInt certificateTemplateModel =
+				(CertificateTemplateModelInt) modelCache.get("certificateTemplateModel");
+
+		if (certificateTemplateModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				certificateTemplateModel = new CertificateTemplateModelHibImpl();
+			}
+
+			modelCache.put("certificateTemplateModel", certificateTemplateModel);
+		}
+
+		return certificateTemplateModel;
+	}
+	
+
 
 }

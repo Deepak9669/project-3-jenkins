@@ -111,6 +111,53 @@
 					</div></li>
 				<!-- ============================================================ -->
 
+				<!-- ====================== BRANCH MANAGER MENU ADDED ====================== -->
+				<li class="nav-item dropdown" style="padding-left: 5px;"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Branch
+							Manager</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+						<a class="dropdown-item" href="<%=ORSView.BRANCH_MANAGER_CTL%>">
+							<i class="fa fa-user-circle"></i> Add Branch Manager
+						</a> <a class="dropdown-item"
+							href="<%=ORSView.BRANCH_MANAGER_LIST_CTL%>"> <i
+							class="fa fa-user-friends"></i> Branch Manager List
+						</a>
+
+					</div></li>
+				<!-- ====================================================================== -->
+
+
+				<!-- ====================== CERTIFICATE TEMPLATE MENU ADDED ====================== -->
+				<li class="nav-item dropdown" style="padding-left: 5px;"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Certificate
+							Template</font>
+
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+						<a class="dropdown-item"
+							href="<%=ORSView.CERTIFICATE_TEMPLATE_CTL%>"> <i
+							class="fa fa-certificate"></i> Add Certificate Template
+
+						</a> <a class="dropdown-item"
+							href="<%=ORSView.CERTIFICATE_TEMPLATE_LIST_CTL%>"> <i
+							class="fa fa-list"></i> Certificate Template List
+
+						</a>
+
+					</div></li>
+				<!-- ====================================================================== -->
+
+
+
 				<li class="nav-item dropdown" style="padding-left: 5px;"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"

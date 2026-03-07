@@ -91,6 +91,15 @@ public interface ORSView {
 	public String JOB_VIEW = PAGE_FOLDER + "/JobView.jsp";
 
 	public String JOB_LIST_VIEW = PAGE_FOLDER + "/JobListView.jsp";
+	
+	public String BRANCH_MANAGER_VIEW = PAGE_FOLDER + "/BranchManagerView.jsp";
+
+	public String BRANCH_MANAGER_LIST_VIEW = PAGE_FOLDER + "/BranchManagerListView.jsp";
+	
+	public String CERTIFICATE_TEMPLATE_VIEW = PAGE_FOLDER + "/CertificateTemplateView.jsp";
+	
+	public String CERTIFICATE_TEMPLATE_LIST_VIEW = PAGE_FOLDER + "/CertificateTemplateListView.jsp";
+
 
 	public String ERROR_CTL = APP_CONTEXT + "/ErrorCtl";
 
@@ -169,5 +178,13 @@ public interface ORSView {
 	public String JOB_CTL = APP_CONTEXT + "/ctl/JobCtl";
 
 	public String JOB_LIST_CTL = APP_CONTEXT + "/ctl/JobListCtl";
+	
+	public String BRANCH_MANAGER_CTL = APP_CONTEXT + "/ctl/BranchManagerCtl";
+
+	public String BRANCH_MANAGER_LIST_CTL = APP_CONTEXT + "/ctl/BranchManagerListCtl";
+	
+	public String CERTIFICATE_TEMPLATE_CTL = APP_CONTEXT + "/ctl/CertificateTemplateCtl";
+
+	public String CERTIFICATE_TEMPLATE_LIST_CTL = APP_CONTEXT + "/ctl/CertificateTemplateListCtl";
 
 }

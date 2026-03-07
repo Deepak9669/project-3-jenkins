@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Feb 26, 2026, 11:36:39 AM by Hibernate Tools 3.5.0.Final -->
+<!-- Generated Mar 7, 2026, 11:49:00 AM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="in.co.rays.project_3.dto.BaseDTO" table="BASEDTO" abstract="true">
         <id name="id" type="java.lang.Long">
