@@ -11,6 +11,7 @@ encoding//src/main/java/in/co/rays/project_3/controller/UserCtl.java=UTF-8
 encoding//src/main/java/in/co/rays/project_3/controller/UserListCtl.java=UTF-8
 encoding//src/main/java/in/co/rays/project_3/controller/UserRegistrationCtl.java=UTF-8
 encoding//src/main/java/in/co/rays/project_3/dto/BusDTO.java=UTF-8
+encoding//src/main/java/in/co/rays/project_3/dto/VendorDTO.java=UTF-8
 encoding//src/main/java/in/co/rays/project_3/model/AuditModelInt.java=UTF-8
 encoding//src/main/java/in/co/rays/project_3/model/BusModelInt.java=UTF-8
 encoding//src/main/java/in/co/rays/project_3/model/DoctorModelHibImpl.java=UTF-8

@@ -156,7 +156,28 @@
 					</div></li>
 				<!-- ====================================================================== -->
 
+				
+				<!-- ====================== VENDOR MENU ADDED ====================== -->
+				<li class="nav-item dropdown" style="padding-left: 5px;"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Vendor</font>
 
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+						<a class="dropdown-item" href="<%=ORSView.VENDOR_CTL%>"> <i
+							class="fa fa-user"></i> Add Vendor
+
+						</a> <a class="dropdown-item" href="<%=ORSView.VENDOR_LIST_CTL%>">
+
+							<i class="fa fa-list"></i> Vendor List
+
+						</a>
+
+					</div></li>
+				<!-- ====================================================================== -->
 
 				<li class="nav-item dropdown" style="padding-left: 5px;"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"

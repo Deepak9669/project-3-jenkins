@@ -1,8 +1,9 @@
-<%@page import="in.co.rays.project_3.controller.AuditCtl"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="in.co.rays.project_3.controller.VendorCtl"%>
 <%@page import="in.co.rays.project_3.controller.ORSView"%>
 <%@page import="in.co.rays.project_3.util.ServletUtility"%>
 <%@page import="in.co.rays.project_3.util.DataUtility"%>
-<%@page import="in.co.rays.project_3.dto.AuditDTO"%>
+<%@page import="in.co.rays.project_3.dto.VendorDTO"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -10,7 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Audit View</title>
+<title>Vendor View</title>
 
 <style type="text/css">
 .input-group-addon {
@@ -31,14 +32,17 @@
 
 	<div class="header">
 		<%@include file="Header.jsp"%>
-		<%@include file="calendar.jsp"%>
 	</div>
 
 	<main>
-	<form action="<%=ORSView.AUDIT_CTL%>" method="post">
+	<form action="<%=ORSView.VENDOR_CTL%>" method="post">
 
-		<jsp:useBean id="dto" class="in.co.rays.project_3.dto.AuditDTO"
+		<jsp:useBean id="dto" class="in.co.rays.project_3.dto.VendorDTO"
 			scope="request"></jsp:useBean>
+
+		<%
+			HashMap statusMap = (HashMap) request.getAttribute("statusMap");
+		%>
 
 		<div class="row pt-3">
 
@@ -51,11 +55,11 @@
 						<%
 							if (dto.getId() != null && dto.getId() > 0) {
 						%>
-						<h3 class="text-center text-primary">Update Audit</h3>
+						<h3 class="text-center text-primary">Update Vendor</h3>
 						<%
 							} else {
 						%>
-						<h3 class="text-center text-primary">Add Audit</h3>
+						<h3 class="text-center text-primary">Add Vendor</h3>
 						<%
 							}
 						%>
@@ -100,75 +104,84 @@
 
 						<div class="md-form">
 
-							<!-- Action By -->
-							<span class="pl-sm-5"><b>Action By</b> *</span><br>
+							<!-- Vendor Name -->
+							<span class="pl-sm-5"><b>Vendor Name</b> *</span><br>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" name="actionBy"
-									placeholder="enter action by"
-									value="<%=DataUtility.getStringData(dto.getActionBy())%>">
+								<input type="text" class="form-control" name="vendorName"
+									placeholder="Enter vendor name"
+									value="<%=DataUtility.getStringData(dto.getVendorName())%>">
 							</div>
-							<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("actionBy", request)%>
+							<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("vendorName", request)%>
 							</font><br>
 
-							<!-- Action Type -->
-							<span class="pl-sm-5"><b>Action Type</b> *</span><br>
+							<!-- Contact Number -->
+							<span class="pl-sm-5"><b>Contact Number</b> *</span><br>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" name="actionType"
-									placeholder="enter action type"
-									value="<%=DataUtility.getStringData(dto.getActionType())%>">
+								<input type="text" class="form-control" name="contactNumber"
+									placeholder="Enter contact number"
+									value="<%=DataUtility.getStringData(dto.getContactNumber())%>">
 							</div>
-							<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("actionType", request)%>
+							<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("contactNumber", request)%>
 							</font><br>
 
-							<!-- Created Date -->
-							<span class="pl-sm-5"><b>Created Date</b> *</span><br>
+							<!-- Vendor Status Dropdown -->
+							<span class="pl-sm-5"><b>Vendor Status</b> *</span><br>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" name="createdDate"
-									placeholder="enter create date"
-									value="<%=DataUtility.getDateString(dto.getCreatedDate())%>">
+								<select class="form-control" name="vendorStatus">
+
+									<option value="">--Select Status--</option>
+
+									<%
+										if (statusMap != null) {
+											for (Object key : statusMap.keySet()) {
+									%>
+
+									<option value="<%=key%>"
+										<%=key.equals(dto.getVendorStatus()) ? "selected" : ""%>>
+										<%=statusMap.get(key)%>
+									</option>
+
+									<%
+										}
+										}
+									%>
+
+								</select>
 							</div>
-							<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("createdDate", request)%>
+
+							<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("vendorStatus", request)%>
 							</font><br>
-
-							<!-- Updated Date -->
-							<span class="pl-sm-5"><b>Updated Date</b></span><br>
-							<div class="col-sm-12">
-								<input type="text" class="form-control" name="updatedDate"
-									placeholder="enter update date"
-									value="<%=DataUtility.getDateString(dto.getUpdatedDate())%>">
-							</div>
-							<br>
-
-							<!-- Remarks -->
-							<span class="pl-sm-5"><b>Remarks</b></span><br>
-							<div class="col-sm-12">
-								<input type="text" class="form-control" name="remarks"
-									placeholder="enter remark"
-									value="<%=DataUtility.getStringData(dto.getRemarks())%>">
-							</div>
 							<br>
 
 							<!-- Buttons -->
 							<%
 								if (dto.getId() != null && dto.getId() > 0) {
 							%>
+
 							<div class="text-center">
-								<input type="submit" name="operation"
-									class="btn btn-success btn-md" value="<%=AuditCtl.OP_UPDATE%>">
 
 								<input type="submit" name="operation"
-									class="btn btn-warning btn-md" value="<%=AuditCtl.OP_CANCEL%>">
+									class="btn btn-success btn-md" value="<%=VendorCtl.OP_UPDATE%>">
+
+								<input type="submit" name="operation"
+									class="btn btn-warning btn-md" value="<%=VendorCtl.OP_CANCEL%>">
+
 							</div>
+
 							<%
 								} else {
 							%>
+
 							<div class="text-center">
-								<input type="submit" name="operation"
-									class="btn btn-success btn-md" value="<%=AuditCtl.OP_SAVE%>">
 
 								<input type="submit" name="operation"
-									class="btn btn-warning btn-md" value="<%=AuditCtl.OP_RESET%>">
+									class="btn btn-success btn-md" value="<%=VendorCtl.OP_SAVE%>">
+
+								<input type="submit" name="operation"
+									class="btn btn-warning btn-md" value="<%=VendorCtl.OP_RESET%>">
+
 							</div>
+
 							<%
 								}
 							%>
@@ -190,3 +203,4 @@
 
 <%@include file="FooterView.jsp"%>
 </html>
+

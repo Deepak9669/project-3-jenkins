@@ -83,23 +83,26 @@ public interface ORSView {
 	public String DOCTOR_VIEW = PAGE_FOLDER + "/DoctorView.jsp";
 
 	public String DOCTOR_LIST_VIEW = PAGE_FOLDER + "/DoctorListView.jsp";
-	
+
 	public String EXPENSE_VIEW = PAGE_FOLDER + "/ExpenseView.jsp";
 
 	public String EXPENSE_LIST_VIEW = PAGE_FOLDER + "/ExpenseListView.jsp";
-	
+
 	public String JOB_VIEW = PAGE_FOLDER + "/JobView.jsp";
 
 	public String JOB_LIST_VIEW = PAGE_FOLDER + "/JobListView.jsp";
-	
+
 	public String BRANCH_MANAGER_VIEW = PAGE_FOLDER + "/BranchManagerView.jsp";
 
 	public String BRANCH_MANAGER_LIST_VIEW = PAGE_FOLDER + "/BranchManagerListView.jsp";
-	
+
 	public String CERTIFICATE_TEMPLATE_VIEW = PAGE_FOLDER + "/CertificateTemplateView.jsp";
-	
+
 	public String CERTIFICATE_TEMPLATE_LIST_VIEW = PAGE_FOLDER + "/CertificateTemplateListView.jsp";
 
+	public String VENDOR_VIEW = PAGE_FOLDER + "/VendorView.jsp";
+
+	public String VENDOR_LIST_VIEW = PAGE_FOLDER + "/VendorListView.jsp";
 
 	public String ERROR_CTL = APP_CONTEXT + "/ErrorCtl";
 
@@ -170,21 +173,25 @@ public interface ORSView {
 	public String DOCTOR_CTL = APP_CONTEXT + "/ctl/DoctorCtl";
 
 	public String DOCTOR_LIST_CTL = APP_CONTEXT + "/ctl/DoctorListCtl";
-	
+
 	public String EXPENSE_CTL = APP_CONTEXT + "/ctl/ExpenseCtl";
 
 	public String EXPENSE_LIST_CTL = APP_CONTEXT + "/ctl/ExpenseListCtl";
-	
+
 	public String JOB_CTL = APP_CONTEXT + "/ctl/JobCtl";
 
 	public String JOB_LIST_CTL = APP_CONTEXT + "/ctl/JobListCtl";
-	
+
 	public String BRANCH_MANAGER_CTL = APP_CONTEXT + "/ctl/BranchManagerCtl";
 
 	public String BRANCH_MANAGER_LIST_CTL = APP_CONTEXT + "/ctl/BranchManagerListCtl";
-	
+
 	public String CERTIFICATE_TEMPLATE_CTL = APP_CONTEXT + "/ctl/CertificateTemplateCtl";
 
 	public String CERTIFICATE_TEMPLATE_LIST_CTL = APP_CONTEXT + "/ctl/CertificateTemplateListCtl";
+
+	public String VENDOR_CTL = APP_CONTEXT + "/ctl/VendorCtl";
+
+	public String VENDOR_LIST_CTL = APP_CONTEXT + "/ctl/VendorListCtl";
 
 }

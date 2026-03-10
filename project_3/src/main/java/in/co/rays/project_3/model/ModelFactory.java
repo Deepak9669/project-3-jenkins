@@ -297,6 +297,26 @@ public final class ModelFactory {
 		return certificateTemplateModel;
 	}
 	
+	
+	public VendorModelInt getVendorModel() {
+
+		VendorModelInt vendorModel =
+				(VendorModelInt) modelCache.get("vendorModel");
+
+		if (vendorModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				vendorModel = new VendorModelHibImpl();
+			}
+
+			modelCache.put("vendorModel", vendorModel);
+		}
+
+		return vendorModel;
+	}
+	
+
+	
 
 
 }
