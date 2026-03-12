@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="in.co.rays.project_3.dto.EventDTO" table="EVENTDTO">
+
+        <id name="id" type="java.lang.Long">
+            <column name="ID"/>
+            <generator class="increment"/>
+        </id>
+
+        <property name="participentName" type="java.lang.String">
+            <column name="PARTICIPENT_NAME"/>
+        </property>
+
+        <property name="eventName" type="java.lang.String">
+            <column name="EVENT_NAME"/>
+        </property>
+
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL"/>
+        </property>
+
+        <property name="registrationDate" type="java.util.Date">
+            <column name="REGISTRATION_DATE"/>
+        </property>
+
+        <!-- ================= AUDIT FIELDS ================= -->
+
+        <property name="createdBy" type="java.lang.String" length="50">
+            <column name="CREATED_BY"/>
+        </property>
+
+        <property name="modifiedBy" type="java.lang.String" length="50">
+            <column name="MODIFIED_BY"/>
+        </property>
+
+        <property name="createdDatetime" type="java.sql.Timestamp">
+            <column name="CREATED_DATETIME"/>
+        </property>
+
+        <property name="modifiedDatetime" type="java.sql.Timestamp">
+            <column name="MODIFIED_DATETIME"/>
+        </property>
+
+    </class>
+
+</hibernate-mapping>

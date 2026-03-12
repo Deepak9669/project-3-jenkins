@@ -156,7 +156,7 @@
 					</div></li>
 				<!-- ====================================================================== -->
 
-				
+
 				<!-- ====================== VENDOR MENU ADDED ====================== -->
 				<li class="nav-item dropdown" style="padding-left: 5px;"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -178,6 +178,26 @@
 
 					</div></li>
 				<!-- ====================================================================== -->
+
+				<li class="nav-item dropdown" style="padding-left: 5px;"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdownEvent"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Event</font>
+
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownEvent">
+
+						<a class="dropdown-item" href="<%=ORSView.EVENT_CTL%>"> <i
+							class="fa fa-calendar"></i> Add Event
+
+						</a> <a class="dropdown-item" href="<%=ORSView.EVENT_LIST_CTL%>">
+
+							<i class="fa fa-list"></i> Event List
+
+						</a>
+
+					</div></li>
 
 				<li class="nav-item dropdown" style="padding-left: 5px;"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"

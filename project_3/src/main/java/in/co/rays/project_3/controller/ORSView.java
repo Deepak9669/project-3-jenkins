@@ -103,6 +103,10 @@ public interface ORSView {
 	public String VENDOR_VIEW = PAGE_FOLDER + "/VendorView.jsp";
 
 	public String VENDOR_LIST_VIEW = PAGE_FOLDER + "/VendorListView.jsp";
+	
+	public String EVENT_VIEW = PAGE_FOLDER + "/EventView.jsp";
+
+	public String EVENT_LIST_VIEW = PAGE_FOLDER + "/EventListView.jsp";
 
 	public String ERROR_CTL = APP_CONTEXT + "/ErrorCtl";
 
@@ -193,5 +197,9 @@ public interface ORSView {
 	public String VENDOR_CTL = APP_CONTEXT + "/ctl/VendorCtl";
 
 	public String VENDOR_LIST_CTL = APP_CONTEXT + "/ctl/VendorListCtl";
+	
+	public String EVENT_CTL = APP_CONTEXT + "/ctl/EventCtl";
+
+	public String EVENT_LIST_CTL = APP_CONTEXT + "/ctl/EventListCtl";
 
 }

@@ -216,6 +216,7 @@ public final class ModelFactory {
 
 		return auditModel;
 	}
+
 	public DoctorModelInt getDoctorModel() {
 
 		DoctorModelInt doctorModel = (DoctorModelInt) modelCache.get("doctorModel");
@@ -231,6 +232,7 @@ public final class ModelFactory {
 
 		return doctorModel;
 	}
+
 	public ExpenseModelInt getExpenseModel() {
 
 		ExpenseModelInt expenseModel = (ExpenseModelInt) modelCache.get("expenseModel");
@@ -246,6 +248,7 @@ public final class ModelFactory {
 
 		return expenseModel;
 	}
+
 	public JobModelInt getJobModel() {
 
 		JobModelInt jobModel = (JobModelInt) modelCache.get("jobModel");
@@ -261,29 +264,27 @@ public final class ModelFactory {
 
 		return jobModel;
 	}
-	
+
 	public BranchManagerModelInt getBranchManagerModel() {
 
-	    BranchManagerModelInt branchManagerModel = 
-	        (BranchManagerModelInt) modelCache.get("branchManagerModel");
+		BranchManagerModelInt branchManagerModel = (BranchManagerModelInt) modelCache.get("branchManagerModel");
 
-	    if (branchManagerModel == null) {
+		if (branchManagerModel == null) {
 
-	        if ("Hibernate".equals(DATABASE)) {
-	            branchManagerModel = new BranchManagerModelHibImpl();
-	        }
+			if ("Hibernate".equals(DATABASE)) {
+				branchManagerModel = new BranchManagerModelHibImpl();
+			}
 
-	        modelCache.put("branchManagerModel", branchManagerModel);
-	    }
+			modelCache.put("branchManagerModel", branchManagerModel);
+		}
 
-	    return branchManagerModel;
+		return branchManagerModel;
 	}
-	
-	
+
 	public CertificateTemplateModelInt getCertificateTemplateModel() {
 
-		CertificateTemplateModelInt certificateTemplateModel =
-				(CertificateTemplateModelInt) modelCache.get("certificateTemplateModel");
+		CertificateTemplateModelInt certificateTemplateModel = (CertificateTemplateModelInt) modelCache
+				.get("certificateTemplateModel");
 
 		if (certificateTemplateModel == null) {
 
@@ -296,12 +297,10 @@ public final class ModelFactory {
 
 		return certificateTemplateModel;
 	}
-	
-	
+
 	public VendorModelInt getVendorModel() {
 
-		VendorModelInt vendorModel =
-				(VendorModelInt) modelCache.get("vendorModel");
+		VendorModelInt vendorModel = (VendorModelInt) modelCache.get("vendorModel");
 
 		if (vendorModel == null) {
 
@@ -314,9 +313,21 @@ public final class ModelFactory {
 
 		return vendorModel;
 	}
-	
 
-	
+	public EventModelInt getEventModel() {
 
+		EventModelInt eventModel = (EventModelInt) modelCache.get("eventModel");
+
+		if (eventModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				eventModel = new EventModelHibImpl();
+			}
+
+			modelCache.put("eventModel", eventModel);
+		}
+
+		return eventModel;
+	}
 
 }
